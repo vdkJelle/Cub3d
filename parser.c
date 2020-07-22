@@ -6,7 +6,7 @@
 /*   By: jelvan-d <jelvan-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/05/04 15:38:16 by jelvan-d      #+#    #+#                 */
-/*   Updated: 2020/07/13 12:14:02 by jelvan-d      ########   odam.nl         */
+/*   Updated: 2020/07/22 14:32:34 by jelvan-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <fcntl.h>
 #include <stdio.h>
 
-int			parser(t_parser	*parser)
+int			parser(t_parser *parser)
 {
 	int			ret;
 	int			fd;

@@ -6,7 +6,7 @@
 /*   By: jelvan-d <jelvan-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/06/01 12:27:52 by jelvan-d      #+#    #+#                 */
-/*   Updated: 2020/06/11 13:35:12 by jelvan-d      ########   odam.nl         */
+/*   Updated: 2020/07/22 16:35:42 by jelvan-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static	int	is_closed(t_map *map)
 		y = 0;
 		if (map->array[x][y] == 'x')
 			return (-1);
-		while(map->array[x][y])
+		while (map->array[x][y])
 		{
 			if (map->array[x][y] == 'x' && (x == 0 || x == map->height - 1))
 				return (-1);
@@ -63,7 +63,7 @@ static	int	is_done(char **map, int y, int x, int height)
 	int	changed;
 
 	changed = 0;
-	if ((ft_strchr("NSWE", map[x][y]) || map[x][y] == 'x') && x != 0 
+	if ((ft_strchr("NSWE", map[x][y]) || map[x][y] == 'x') && x != 0
 		&& x != (height - 1) && y > 0)
 	{
 		if (ft_strchr("02 ", map[x - 1][y - 1]) && map[x - 1][y - 1])
@@ -121,7 +121,7 @@ static int	floodfill(t_map *map)
 	while (map->array[x])
 	{
 		y = 0;
-		while(map->array[x][y])
+		while (map->array[x][y])
 		{
 			convert_x(map->array, y, x, map->height);
 			y++;
@@ -132,7 +132,7 @@ static int	floodfill(t_map *map)
 	while (map->array[x])
 	{
 		y = 0;
-		while(map->array[x][y])
+		while (map->array[x][y])
 		{
 			count += is_done(map->array, y, x, map->height);
 			y++;
@@ -156,28 +156,31 @@ int			check_map(t_map *map)
 	int y;
 
 	players = 0;
-	x = 0;
-	while(map->array[x])
+	y = 0;
+	while (map->array[y])
 	{
-		y = 0;
-		while(map->array[x][y])
+		x = 0;
+		while (map->array[y][x])
 		{
-			if (ft_strchr("NSWE", map->array[x][y]))
+			if (ft_strchr("NSWE", map->array[y][x]))
+			{
 				players++;
-			y++;
+				map->mov.posx = x;
+				map->mov.posy = y;
+				if (map->array[y][x] == 'N')
+				{
+					map->mov.dirx = -1;
+					map->mov.diry = 0;
+				}
+			}
+			x++;
 		}
-		x++;
+		y++;
 	}
 	if (players != 1)
 		return (-1);
 	while (floodfill(map))
 		floodfill(map);
-	// x = 0;
-	// while (map->array[x])
-	// {
-	// 	ft_printf("%s\n", map->array[x]);
-	// 	x++;
-	// }
 	if (is_closed(map) < 0)
 		return (-1);
 	return (0);

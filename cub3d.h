@@ -6,29 +6,32 @@
 /*   By: jelvan-d <jelvan-d@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/05/04 14:09:30 by jelvan-d      #+#    #+#                 */
-/*   Updated: 2020/07/13 12:57:17 by jelvan-d      ########   odam.nl         */
+/*   Updated: 2020/07/22 16:44:01 by jelvan-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-#include "./get_next_line/get_next_line.h"
-#include "./libft/libft.h"
-#include "./ft_printf/printf.h"
-#include "./minilibx-master/mlx.h"
-#include "./minilibx-master/mlx_int.h"
-#include <stdlib.h>
+# include "./get_next_line/get_next_line.h"
+# include "./libft/includes/libft.h"
+# include "./ft_printf/printf.h"
+# include "./minilibx_mac/mlx.h"
+# include <stdlib.h>
+# include <math.h>
 
 typedef struct		s_mov
 {
-	double		posX;
-	double		posY;
-	double		dirX;
-	double		dirY;
-	double		planeX;
-	double		planeY;
+	double		posx;
+	double		posy;
+	double		dirx;
+	double		diry;
+	double		planex;
+	double		planey;
 	double		time;
-	double		oldTime;
+	double		oldtime;
+	double		camerax;
+	double		raydirx;
+	double		raydiry;
 }					t_mov;
 
 typedef struct		s_map
@@ -81,37 +84,53 @@ typedef struct		s_data
 	void		*mlx_win;
 	void		*img;
 	char		*addr;
-	int			bits_per_pixel;
-	int			line_length;
+	int			bpp;
+	int			length;
 	int			endian;
 	t_parser	parser;
 }					t_data;
 
-/*parser.c*/
-int		parser(t_parser *parser);
+/*
+** parser.c
+*/
+int					parser(t_parser *parser);
 
-/*initialize_struct.c*/
-void	initialize_parser(t_parser *parser);
+/*
+**initialize_struct.c
+*/
+void				initialize_parser(t_parser *parser);
 
-/*parser_utils.c*/
-int		fill_parser(char *line, t_parser *parser);
+/*
+**parser_utils.c
+*/
+int					fill_parser(char *line, t_parser *parser);
 
-/*error_handling.c*/
-void	check_encounters(char *line, int i, t_parser *parser);
-int		check_validity(t_parser *parser);
-int		print_error(char *str);
+/*
+**error_handling.c
+*/
+void				check_encounters(char *line, int i, t_parser *parser);
+int					check_validity(t_parser *parser);
+int					print_error(char *str);
 
-/*map_handling.c*/
-void	strjoin_map(char *line, t_parser *parser);
-void	make_array_map(t_map *map);
+/*
+**map_handling.c
+*/
+void				strjoin_map(char *line, t_parser *parser);
+void				make_array_map(t_map *map);
 
-/*floodfill.c*/
-int		check_map(t_map *map);
+/*
+**floodfill.c
+*/
+int					check_map(t_map *map);
 
-/*my_mlx_pixel_put.c*/
-void	my_mlx_pixel_put(t_data *data, int x, int u, int color);
+/*
+**my_mlx_pixel_put.c
+*/
+void				my_mlx_pixel_put(t_data *data, int x, int u, int color);
 
-/*colours.c*/
-int		get_colour(t_parser *parser);
+/*
+**colours.c
+*/
+void				get_colour(t_parser *parser);
 
 #endif

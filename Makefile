@@ -6,7 +6,7 @@
 #    By: jelvan-d <jelvan-d@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2020/05/25 12:35:41 by jelvan-d      #+#    #+#                  #
-#    Updated: 2020/07/08 17:52:06 by jelvan-d      ########   odam.nl          #
+#    Updated: 2020/07/22 14:26:27 by jelvan-d      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRCS			=	initialize_struct\
 					map_handling\
 					floodfill\
 					my_mlx_pixel_put\
+					colours\
 					main
 
 CFILES			=	$(SRCS:%=%.c)

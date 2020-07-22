@@ -6,7 +6,7 @@
 /*   By: jelvan-d <jelvan-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/05/29 12:01:56 by jelvan-d      #+#    #+#                 */
-/*   Updated: 2020/06/01 14:14:34 by jelvan-d      ########   odam.nl         */
+/*   Updated: 2020/07/22 14:43:28 by jelvan-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void		make_array_map(t_map *map)
 	i = 0;
 	map->end = 1;
 	map->array = ft_split(map->tmp, '\n');
-	free(map->tmp);
 	if (!map->array)
 		return ;
 	while (map->array[i])

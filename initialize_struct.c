@@ -6,18 +6,22 @@
 /*   By: jelvan-d <jelvan-d@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/05/20 11:08:21 by jelvan-d      #+#    #+#                 */
-/*   Updated: 2020/05/29 12:46:17 by jelvan-d      ########   odam.nl         */
+/*   Updated: 2020/07/22 16:29:25 by jelvan-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void initialize_map(t_map *map)
+static void	initialize_map(t_map *map)
 {
 	map->begin = 0;
 	map->end = 0;
 	map->height = 0;
 	map->width = 0;
+	map->mov.planeX = 0;
+	map->mov.planeY = 0.66;
+	map->mov.time = 0;
+	map->mov.oldTime = 0;
 }
 
 static void	initialize_error(t_error *error)
