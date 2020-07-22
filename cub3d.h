@@ -6,7 +6,7 @@
 /*   By: jelvan-d <jelvan-d@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/05/04 14:09:30 by jelvan-d      #+#    #+#                 */
-/*   Updated: 2020/06/11 11:19:26 by jelvan-d      ########   odam.nl         */
+/*   Updated: 2020/07/13 12:57:17 by jelvan-d      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,18 @@
 #include "./minilibx-master/mlx_int.h"
 #include <stdlib.h>
 
+typedef struct		s_mov
+{
+	double		posX;
+	double		posY;
+	double		dirX;
+	double		dirY;
+	double		planeX;
+	double		planeY;
+	double		time;
+	double		oldTime;
+}					t_mov;
+
 typedef struct		s_map
 {
 	int		begin;
@@ -27,6 +39,7 @@ typedef struct		s_map
 	int		height;
 	char	**array;
 	char	*tmp;
+	t_mov	mov;
 }					t_map;
 
 typedef struct		s_error
@@ -53,26 +66,29 @@ typedef struct		s_parser
 	int		ceiling_r;
 	int		ceiling_g;
 	int		ceiling_b;
+	int		trgb_ceil;
 	int		floor_r;
 	int		floor_g;
 	int		floor_b;
+	int		trgb_floor;
 	t_error	error;
 	t_map	map;
 }					t_parser;
 
 typedef struct		s_data
 {
-	void	*mlx;
-	void	*mlx_win;
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
+	void		*mlx;
+	void		*mlx_win;
+	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+	t_parser	parser;
 }					t_data;
 
 /*parser.c*/
-int		parser(void);
+int		parser(t_parser *parser);
 
 /*initialize_struct.c*/
 void	initialize_parser(t_parser *parser);
@@ -94,5 +110,8 @@ int		check_map(t_map *map);
 
 /*my_mlx_pixel_put.c*/
 void	my_mlx_pixel_put(t_data *data, int x, int u, int color);
+
+/*colours.c*/
+int		get_colour(t_parser *parser);
 
 #endif
